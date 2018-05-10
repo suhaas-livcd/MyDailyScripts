@@ -60,7 +60,7 @@ mFileName="$CURRENT_DATE.txt"
 	done
 echo "--Writing Data to file--"
 echo -e $mFileWrite
-echo $mFileWrite >> $mFileName
+echo -e $mFileWrite >> $mFileName
 echo "--Closing--"
 }
 
