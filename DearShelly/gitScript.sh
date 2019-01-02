@@ -113,5 +113,5 @@ then
 else
    echo "Fields not empty"
    echo $mUserFormData
+   createFile "$mUserFormData"
 fi
-# createFile "$mUserFormData"
