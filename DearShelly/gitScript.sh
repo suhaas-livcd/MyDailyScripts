@@ -9,7 +9,9 @@ getUserLog(){
 	   --add-entry="I Learned" \
 	   --add-entry="I wish" \
 	   --add-entry="Remind me to" \
-	   --add-entry="Others")
+	   --add-entry="Others" \
+	   --add-list="Interests" \
+       --list-values="IELTS |Letterie - BarrieChole - Shelly|Website - Blog|Guitar - Charcoal|Python - CV|Treck")
 	echo "$mUserFormData"
 }
 
@@ -22,7 +24,7 @@ initApplication(){
 #directoryManager : to create a dir /2018/May/file_1
 directoryManager(){
 echo "Initialising directoryManager()"
-cd /home/suhaas/Desktop/MyPrepLogger/diary
+cd /home/suhaas/Desktop/MyPrepLogger/Diary
 CURRENT_MONTH="`date "+%b"`"
 echo $CURRENT_MONTH
 CURRENT_YEAR="`date "+%Y"`"
@@ -104,4 +106,12 @@ echo "--Script End--"
 ###
 initApplication
 mUserFormData=$( getUserLog )	
-createFile "$mUserFormData"
+if [ -z "$mUserFormData" ];
+then
+ 	echo "Found empty"
+ 	exit 1
+else
+   echo "Fields not empty"
+   echo $mUserFormData
+fi
+# createFile "$mUserFormData"
