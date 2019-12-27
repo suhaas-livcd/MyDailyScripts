@@ -2,9 +2,9 @@
 This repository is collection of some basic automation scripts that are being used.
 ## 1. Record Your Day (Dear Shelly) :pencil: :calendar: :notebook:
 <p align="left">
-<kbd><img src="https://github.com/suhaas-livcd/suhaas-livcd.github.io/blob/master/screenShots/MyDailyScripts(GitAutomator)/GitAutomatorScript.png?raw=true" width="200" height="250" title="Login Activity"></kbd>
-<kbd><img src="https://github.com/suhaas-livcd/suhaas-livcd.github.io/blob/master/screenShots/MyDailyScripts(GitAutomator)/DiaryTemplate3Gimped.png?raw=true" width="180" height="250" title="Login Activity"></kbd>
-<kbd><img src="https://github.com/suhaas-livcd/suhaas-livcd.github.io/blob/master/screenShots/MyDailyScripts(GitAutomator)/Diary Template.png?raw=true" width="440" height="250" title="Login Activity"></kbd>
+<kbd><img src="https://suhaas-livcd.github.io/screenShots/MyDailyScripts(GitAutomator)/GitAutomatorScript.png" width="200" height="250" title="Login Activity"></kbd>
+<kbd><img src="https://suhaas-livcd.github.io/screenShots/MyDailyScripts(GitAutomator)/DiaryTemplate3Gimped.png" width="180" height="250" title="Login Activity"></kbd>
+<kbd><img src="https://suhaas-livcd.github.io/screenShots/MyDailyScripts(GitAutomator)/DiaryTemplate3Gimped.png" width="440" height="250" title="Login Activity"></kbd>
 </p>
 
 A cool bash application designed using zenity.
