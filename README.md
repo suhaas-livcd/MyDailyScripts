@@ -19,3 +19,5 @@ A cool bash application designed using zenity.
 - In Progress
   - Advanced Git Operation such as resolving conflicts
   - Features while exporting diary
+- Versions
+  - In progress for Windows - using JavaFx
