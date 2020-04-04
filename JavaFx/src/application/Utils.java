@@ -4,9 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.prefs.Preferences;
 
 public class Utils {
 
+    public static Preferences getPrefs() {
+        return Preferences.userNodeForPackage(application.Utils.class);
+    }
     /**
      * To get the name of the OS, whether the user is running on a windows or a
      * Linux
@@ -32,10 +36,15 @@ public class Utils {
      * 
      * @return
      */
-    public static String getCurrentDate() {
-        return new SimpleDateFormat("dd_MMM_yyyy_HH::ss").format(new Date());
+    public static String getCurrentDate(Date date) {
+        return new SimpleDateFormat("dd_MMM_yyyy_HHmmss").format(date);
     }
-    
-//    self.my_data['textbox_WordOfDay'] = self.textbox_WordOfDay.text()
-//            self.my_data['textbox_Diary'] = self.textbox_Diary.toPlainText()
+
+    public static String getCurrentMonth(Date date) {
+        return new SimpleDateFormat("MMM").format(date);
+    }
+
+    public static String getCurrentYear(Date date) {
+        return new SimpleDateFormat("yyyy").format(date);
+    }
 }

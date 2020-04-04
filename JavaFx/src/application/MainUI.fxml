@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -28,26 +30,26 @@
    <children>
       <MenuBar>
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu fx:id="menu_File" mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Settings" />
-                  <Menu mnemonicParsing="false" text="Theme">
+                  <MenuItem fx:id="mitem_FileSettings" mnemonicParsing="false" text="Settings" />
+                  <Menu fx:id="menu_Themes" mnemonicParsing="false" text="Theme">
                      <items>
-                        <RadioMenuItem mnemonicParsing="false" selected="true" text="Light">
+                        <RadioMenuItem fx:id="mitem_ThemeLight" mnemonicParsing="false" selected="true" text="Light">
                            <toggleGroup>
                               <ToggleGroup fx:id="theme_group" />
                            </toggleGroup>
                         </RadioMenuItem>
-                        <RadioMenuItem disable="true" mnemonicParsing="false" text="Dark" toggleGroup="$theme_group" />
+                        <RadioMenuItem fx:id="mitem_ThemeHacker" disable="true" mnemonicParsing="false" text="Dark" toggleGroup="$theme_group" />
                         <RadioMenuItem disable="true" mnemonicParsing="false" text="Hacker" toggleGroup="$theme_group" />
                      </items>
                   </Menu>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="mitem_FileClose" mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu fx:id="menu_Help" mnemonicParsing="false" text="Help">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Shortcuts" />
+                  <MenuItem fx:id="mitem_HelpAbout" mnemonicParsing="false" text="Shortcuts" />
               <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
@@ -55,7 +57,7 @@
       </MenuBar>
       <TabPane VBox.vgrow="SOMETIMES">
          <tabs>
-            <Tab text="Logger_View">
+            <Tab fx:id="tab_ViewLogger" text="Logger_View">
                <content>
                   <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="618.0" prefWidth="1000.0">
                     <items>
@@ -65,7 +67,7 @@
                                  <children>
                                     <TabPane prefHeight="357.0" prefWidth="307.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <tabs>
-                                        <Tab text="Data">
+                                        <Tab fx:id="tab_Data" text="Data">
                                           <content>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                    <children>
@@ -157,7 +159,7 @@
                                  <children>
                                     <TabPane prefHeight="357.0" prefWidth="386.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <tabs>
-                                        <Tab text="log_file">
+                                        <Tab fx:id="tab_LogFile" text="log_file">
                                           <content>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                    <children>
@@ -175,8 +177,9 @@
                                                             <HTMLEditor fx:id="txtarea_LogContent" prefHeight="200.0" prefWidth="506.0" GridPane.rowIndex="2" />
                                                             <ToolBar prefHeight="40.0" prefWidth="200.0">
                                                               <items>
-                                                                <Button fx:id="btn_LogSave" mnemonicParsing="false" text="Save" />
-                                                                  <Button fx:id="btn_LogMaxView" mnemonicParsing="false" text="Maximize" />
+                                                                <Button fx:id="btn_LogSave" mnemonicParsing="false" onMouseClicked="#btn_LogSaveClick" text="Save" />
+                                                                  <Button fx:id="btn_LogMaxView" mnemonicParsing="false" onMouseClicked="#btn_LogMaxViewClicked" text="Maximize" />
+                                                                  <Button fx:id="btn_LogCommit" mnemonicParsing="false" onMouseClicked="#btn_LogCommitClicked" text="Log" />
                                                               </items>
                                                             </ToolBar>
                                                          </children>
@@ -192,24 +195,138 @@
                                     </TabPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="357.0" prefWidth="307.0" style="-fx-border-color: lightgray;">
+                              <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="357.0" prefWidth="287.0" style="-fx-border-color: lightgray;">
                                  <children>
                                     <TabPane prefHeight="357.0" prefWidth="307.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <tabs>
-                                        <Tab text="Tasks_office">
+                                        <Tab fx:id="tab_Tasks" text="Tasks - Top 10">
                                           <content>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                    <children>
-                                                      <ScrollPane layoutX="-79.0" layoutY="-27.0" prefHeight="326.0" prefWidth="305.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                                   </children>
-                                                </AnchorPane>
-                                          </content>
-                                        </Tab>
-                                        <Tab text="Tasks_personal">
-                                          <content>
-                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                   <children>
-                                                      <ScrollPane layoutX="21.0" layoutY="37.0" prefHeight="326.0" prefWidth="305.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                      <ScrollPane prefHeight="326.0" prefWidth="293.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <content>
+                                                            <GridPane alignment="CENTER" prefHeight="326.0" prefWidth="293.0">
+                                                              <columnConstraints>
+                                                                <ColumnConstraints hgrow="SOMETIMES" />
+                                                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="70.0" prefWidth="70.0" />
+                                                              </columnConstraints>
+                                                              <rowConstraints>
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                              </rowConstraints>
+                                                               <children>
+                                                                  <Button fx:id="btn_TasksSave" mnemonicParsing="false" onMouseClicked="#btn_TasksSaveClicked" text="Save Tasks" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
+                                                                  <CheckBox fx:id="cb_task00" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="20.0" text="Task 0" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                                                                     <GridPane.margin>
+                                                                        <Insets left="5.0" />
+                                                                     </GridPane.margin>
+                                                                  </CheckBox>
+                                                                  <ChoiceBox fx:id="cb_pr_task00" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                                                     <GridPane.margin>
+                                                                        <Insets right="10.0" />
+                                                                     </GridPane.margin></ChoiceBox>
+                                                                  <CheckBox fx:id="cb_task01" layoutX="10.0" layoutY="16.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" text="Task 1" GridPane.rowIndex="1">
+                                                                     <GridPane.margin>
+                                                                        <Insets left="5.0" />
+                                                                     </GridPane.margin>
+                                                                  </CheckBox>
+                                                                  <ChoiceBox fx:id="cb_pr_task01" layoutX="272.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                                                     <GridPane.margin>
+                                                                        <Insets right="10.0" />
+                                                                     </GridPane.margin></ChoiceBox>
+                                                                  <CheckBox fx:id="cb_task02" layoutX="10.0" layoutY="16.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" text="Task 2" GridPane.rowIndex="2">
+                                                                     <GridPane.margin>
+                                                                        <Insets left="5.0" />
+                                                                     </GridPane.margin>
+                                                                  </CheckBox>
+                                                                  <ChoiceBox fx:id="cb_pr_task02" layoutX="272.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                                                     <GridPane.margin>
+                                                                        <Insets right="10.0" />
+                                                                     </GridPane.margin>
+                                                                  </ChoiceBox>
+                                                                  <CheckBox fx:id="cb_task03" layoutX="10.0" layoutY="16.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" text="Task 3" GridPane.rowIndex="3">
+                                                                     <GridPane.margin>
+                                                                        <Insets left="5.0" />
+                                                                     </GridPane.margin>
+                                                                  </CheckBox>
+                                                                  <ChoiceBox fx:id="cb_pr_task03" layoutX="10.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                                                     <GridPane.margin>
+                                                                        <Insets right="10.0" />
+                                                                     </GridPane.margin>
+                                                                  </ChoiceBox>
+                                                                  <CheckBox fx:id="cb_task04" layoutX="10.0" layoutY="16.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" text="Task 4" GridPane.rowIndex="4">
+                                                                     <GridPane.margin>
+                                                                        <Insets left="5.0" />
+                                                                     </GridPane.margin>
+                                                                  </CheckBox>
+                                                                  <ChoiceBox fx:id="cb_pr_task04" layoutX="10.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                                                     <GridPane.margin>
+                                                                        <Insets right="10.0" />
+                                                                     </GridPane.margin>
+                                                                  </ChoiceBox>
+                                                                  <CheckBox fx:id="cb_task05" layoutX="10.0" layoutY="16.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" text="Task 5" GridPane.rowIndex="5">
+                                                                     <GridPane.margin>
+                                                                        <Insets left="5.0" />
+                                                                     </GridPane.margin>
+                                                                  </CheckBox>
+                                                                  <ChoiceBox fx:id="cb_pr_task05" layoutX="272.0" layoutY="41.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                                                                     <GridPane.margin>
+                                                                        <Insets right="10.0" />
+                                                                     </GridPane.margin>
+                                                                  </ChoiceBox>
+                                                                  <CheckBox fx:id="cb_task06" layoutX="10.0" layoutY="16.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" text="Task 6" GridPane.rowIndex="6">
+                                                                     <GridPane.margin>
+                                                                        <Insets left="5.0" />
+                                                                     </GridPane.margin>
+                                                                  </CheckBox>
+                                                                  <ChoiceBox fx:id="cb_pr_task06" layoutX="10.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                                                                     <GridPane.margin>
+                                                                        <Insets right="10.0" />
+                                                                     </GridPane.margin>
+                                                                  </ChoiceBox>
+                                                                  <CheckBox fx:id="cb_task07" layoutX="10.0" layoutY="16.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" text="Task 7" GridPane.rowIndex="7">
+                                                                     <GridPane.margin>
+                                                                        <Insets left="5.0" />
+                                                                     </GridPane.margin>
+                                                                  </CheckBox>
+                                                                  <ChoiceBox fx:id="cb_pr_task07" layoutX="10.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+                                                                     <GridPane.margin>
+                                                                        <Insets right="10.0" />
+                                                                     </GridPane.margin>
+                                                                  </ChoiceBox>
+                                                                  <CheckBox fx:id="cb_task08" layoutX="10.0" layoutY="16.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" text="Task 8" GridPane.rowIndex="8">
+                                                                     <GridPane.margin>
+                                                                        <Insets left="5.0" />
+                                                                     </GridPane.margin>
+                                                                  </CheckBox>
+                                                                  <ChoiceBox fx:id="cb_pr_task08" layoutX="273.0" layoutY="129.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+                                                                     <GridPane.margin>
+                                                                        <Insets right="10.0" />
+                                                                     </GridPane.margin>
+                                                                  </ChoiceBox>
+                                                                  <CheckBox fx:id="cb_task09" layoutX="10.0" layoutY="16.0" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" text="Task 9" GridPane.rowIndex="9">
+                                                                     <GridPane.margin>
+                                                                        <Insets left="5.0" />
+                                                                     </GridPane.margin>
+                                                                  </CheckBox>
+                                                                  <ChoiceBox fx:id="cb_pr_task09" layoutX="273.0" layoutY="99.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+                                                                     <GridPane.margin>
+                                                                        <Insets right="10.0" />
+                                                                     </GridPane.margin>
+                                                                  </ChoiceBox>
+                                                               </children>
+                                                            </GridPane>
+                                                         </content>
+                                                      </ScrollPane>
                                                    </children>
                                                 </AnchorPane>
                                           </content>
