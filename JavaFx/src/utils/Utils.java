@@ -1,4 +1,4 @@
-package application;
+package utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.prefs.Preferences;
 public class Utils {
 
     public static Preferences getPrefs() {
-        return Preferences.userNodeForPackage(application.Utils.class);
+        return Preferences.userNodeForPackage(utils.Utils.class);
     }
     /**
      * To get the name of the OS, whether the user is running on a windows or a
